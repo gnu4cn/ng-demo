@@ -10,22 +10,18 @@ import { HeroService } from '../hero.service';
     styleUrls: ['./task-schedule-demo.component.css']
 })
 export class TaskScheduleDemoComponent implements OnInit {
-    todo: Array<string> = [];
-    done: Array<string> = [];
+    todo: Array<Hero> = [];
+    done: Array<Hero> = [];
 
 
     constructor(private heroService: HeroService) {}
 
     ngOnInit(): void {
         this.heroService.getHeroes()
-        .subscribe(heroes => {
-            heroes.map(hero => {
-                this.todo.push(hero.name);
-            });
-        });
+        .subscribe(heroes => this.todo = heroes);
     }
 
-    drop(event: CdkDragDrop<string[]>) {
+    drop(event: CdkDragDrop<Hero[]>) {
         if (event.previousContainer === event.container) {
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
@@ -35,6 +31,12 @@ export class TaskScheduleDemoComponent implements OnInit {
                 event.previousIndex,
                 event.currentIndex,
             );
+        }
+
+        if (this.done.length > 0) {
+            this.done.forEach((hero: Hero) => {
+                console.log(`${hero.id} - ${hero.name}`);
+            });
         }
     }
 }
