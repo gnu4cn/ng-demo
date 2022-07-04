@@ -34,8 +34,11 @@ export class TaskScheduleDemoComponent implements OnInit {
         }
 
         if (this.done.length > 0) {
+            let tmp: number = 0;
             this.done.forEach((hero: Hero) => {
-                console.log(`${hero.id} - ${hero.name}`);
+                hero.orderNum = tmp;
+                tmp++;
+                console.log(`${hero.id} - ${hero.name} - ${hero.orderNum}`);
             });
         }
     }
