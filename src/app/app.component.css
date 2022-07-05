@@ -5,6 +5,7 @@ h1 {
 nav a {
     padding: 1rem;
     text-decoration: none;
+    letter-spacing: 2px;
     margin-top: 10px;
     display: inline-block;
     background-color: #e8e8e8;
@@ -16,6 +17,7 @@ nav a:hover {
     color: white;
     background-color: #42545C;
 }
-nav a.active {
+nav a.active-nav {
+    color: white;
     background-color: black;
 }
